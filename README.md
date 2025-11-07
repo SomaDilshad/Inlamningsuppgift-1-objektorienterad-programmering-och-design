@@ -1,19 +1,18 @@
 # Inlamningsuppgift-1-objektorienterad-programmering-och-design
 Github link: https://github.com/SomaDilshad/Inlamningsuppgift-1-objektorienterad-programmering-och-design
 
-# lersensorsystem med Mätvärdesinsamling och Analys
 
-## 📋 Projektbeskrivning
+# Projektbeskrivning
 Ett C++-baserat system för att simulera, hantera och analysera mätdata från flera sensorer. Systemet simulerar ett IoT-liknande miljöövervakningssystem med stöd för temperatur, luftfuktighet och tryck.
 
-## 🚀 Snabbstart
+# Snabbstart
 Programmet är helt färdigt och körbart direkt - inga ytterligare inställningar krävs!
 
 # Reflektion över Flersensorsystemet
 
-## 📝 Mina lärdomar och insikter
+# Mina lärdomar och insikter
 
-### 🎯 Vad gick bra
+# Vad gick bra
 
 Modulär design
 - Att dela upp systemet i tydliga klasser med specifika ansvar gjorde koden mycket lättare att underhålla
@@ -30,7 +29,7 @@ Felhantering
 - Try-catch blocks för filoperationer förhindrar kraschar
 - Menysystemet återställer gracefully vid fel
 
-### 🤔 Utmaningar och lösningar
+# Utmaningar och lösningar
 
 Initial arkitektur
 - Problem: Först tänkte jag ha all logik i main.cpp
@@ -47,7 +46,7 @@ Statistikberäkningar
 - Lösning: Lägga till guard clause för n < 2
 - Resultat: Matematiskt korrekt beteende
 
-### 💡 Viktigaste insikterna
+# Viktigaste insikterna
 
 1. RAII är fantastiskt
    - Inget manuellt minneshanteringsstress
@@ -64,7 +63,7 @@ Statistikberäkningar
    - Enklare att läsa och förstå koden
    - Mindre risk för sidoeffekter
 
-### 🚀 Vad jag skulle göra annorlunda nästa gång
+# Vad jag skulle göra annorlunda nästa gång
 
 Tidig planering
 - Skissa klassdiagram innan kodning
@@ -81,7 +80,7 @@ Mer användning av modern C++
 - `std::variant` för olika typer av mätvärden
 - Smart pointers för mer komplexa objektrelationer
 
-### 📊 Tekniska reflektioner
+# Tekniska reflektioner
 
 Prestanda
 - `std::vector` är perfekt för denna typ av datamängd
@@ -93,7 +92,7 @@ Skalbarhet
 - För miljontals mätningar skulle database behövas
 - Realtidskrav skulle kräva trådar och lock-free strukturer
 
-### 🌟 Stolt över
+# Stolt över
 
 1. Ren kodstruktur
    - Lätt att läsa och förstå
@@ -110,7 +109,7 @@ Skalbarhet
    - Återställer gracefully
    - Informerar användaren om problem
 
-### 🔮 Framtida förbättringar
+# Framtida förbättringar
 
 För nästa inlämning ser jag potential för:
 - Arv och polymorfism för olika sensortyper
@@ -118,7 +117,7 @@ För nästa inlämning ser jag potential för:
 - Observer pattern för realtidsdatauppdateringar
 - Unit tests med Catch2 eller Google Test
 
-## 🎓 Slutsats
+# Slutsats
 
 Detta projekt har varit en excellent övning i objektorienterad design och modern C++ programmering. Jag har lärt mig värdet av:
 
