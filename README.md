@@ -1,7 +1,6 @@
 # Inlamningsuppgift-1-objektorienterad-programmering-och-design
 Github link: https://github.com/SomaDilshad/Inlamningsuppgift-1-objektorienterad-programmering-och-design
 
-
 # Projektbeskrivning
 Ett C++-baserat system för att simulera, hantera och analysera mätdata från flera sensorer. Systemet simulerar ett IoT-liknande miljöövervakningssystem med stöd för temperatur, luftfuktighet och tryck.
 
