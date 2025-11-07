@@ -9,7 +9,6 @@ Ett C++-baserat system för att simulera, hantera och analysera mätdata från f
 ## 🚀 Snabbstart
 Programmet är helt färdigt och körbart direkt - inga ytterligare inställningar krävs!
 
-
 # Reflektion över Flersensorsystemet
 
 ## 📝 Mina lärdomar och insikter
@@ -127,4 +126,4 @@ Detta projekt har varit en excellent övning i objektorienterad design och moder
 - Modulär design för underhållbarhet
 - Användarcentrerad design även för konsolapplikationer
 
-Känslan av att ha byggt ett fullt funktionellt system från grunden med rena, välstrukturerade klasser är extremt tillfredsställande. Projektet har gett mig ett solidt fundament att bygga vidare på i nästa inlämning med mer avancerad C++ funktionalitet..
+Känslan av att ha byggt ett fullt funktionellt system från grunden med rena, välstrukturerade klasser är extremt tillfredsställande. Projektet har gett mig ett solidt fundament att bygga vidare på i nästa inlämning med mer avancerad C++ funktionalitet.
