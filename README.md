@@ -127,4 +127,4 @@ Detta projekt har varit en excellent övning i objektorienterad design och moder
 - Modulär design för underhållbarhet
 - Användarcentrerad design även för konsolapplikationer
 
-Känslan av att ha byggt ett fullt funktionellt system från grunden med rena, välstrukturerade klasser är extremt tillfredsställande. Projektet har gett mig ett solidt fundament att bygga vidare på i nästa inlämning med mer avancerad C++ funktionalitet.
+Känslan av att ha byggt ett fullt funktionellt system från grunden med rena, välstrukturerade klasser är extremt tillfredsställande. Projektet har gett mig ett solidt fundament att bygga vidare på i nästa inlämning med mer avancerad C++ funktionalitet..
