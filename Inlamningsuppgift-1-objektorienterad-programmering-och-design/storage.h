@@ -7,29 +7,29 @@
  
  class MeasurementStorage {
  private:
-     std::vector<Measurement> mätningar;  // Håller alla mätningar
+    std::vector<Measurement> measurements;  // Håller alla mätningar
  
  public:
      // Grundläggande operationer
-     void läggTillMätning(const Measurement& mätning);
-     void rensaAllaMätningar();
+    void addMeasurement(const Measurement& measurement);
+    void clearAllMeasurements();
      
      // Statistik - const eftersom de inte ändrar lagringen
-     void visaAllaMätningar() const;
-     void visaStatistikPerSensor() const;
-     void visaStatistikFörSensor(const std::string& sensorNamn) const;
+    void showAllMeasurements() const;
+    void showStatisticsPerSensor() const;
+    void showStatisticsForSensor(const std::string& sensorName) const;
      
      // Filhantering
-     bool sparaTillFil(const std::string& filnamn) const;
-     bool laddaFrånFil(const std::string& filnamn);
+    bool saveToFile(const std::string& filename) const;
+    bool loadFromFile(const std::string& filename);
      
      // Hjälpmetoder för statistik
-     std::vector<Measurement> hämtaMätningarFörSensor(const std::string& sensorNamn) const;
-     int antalMätningarFörSensor(const std::string& sensorNamn) const;
-     double beräknaMedelvärde(const std::string& sensorNamn) const;
-     double hittaMinVärde(const std::string& sensorNamn) const;
-     double hittaMaxVärde(const std::string& sensorNamn) const;
-     double beräknaStandardavvikelse(const std::string& sensorNamn) const;
+    std::vector<Measurement> getMeasurementsForSensor(const std::string& sensorName) const;
+    int countMeasurementsForSensor(const std::string& sensorName) const;
+    double calculateAverage(const std::string& sensorName) const;
+    double findMinValue(const std::string& sensorName) const;
+    double findMaxValue(const std::string& sensorName) const;
+    double calculateStandardDeviation(const std::string& sensorName) const;
  };
  
  #endif

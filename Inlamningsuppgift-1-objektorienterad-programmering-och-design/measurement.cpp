@@ -2,13 +2,13 @@
  #include "utils.h"
  #include <iostream>
  
- // Konstruktor med automatisk tidsstämpel
- Measurement::Measurement(const std::string& namn, const std::string& enhet, double värde)
-     : sensorNamn(namn), enhet(enhet), värde(värde), 
-       tidsstämpel(Utils::nuvarandeTidsstämpel()) {}
+// Konstruktor med automatisk tidsstämpel
+Measurement::Measurement(const std::string& name, const std::string& unit, double value)
+    : sensorName(name), unit(unit), value(value), 
+      timestamp(Utils::currentTimestamp()) {}
  
- // Konstruktor med specifik tidsstämpel  
- Measurement::Measurement(const std::string& namn, const std::string& enhet, 
-                        double värde, const std::string& tid)
-     : sensorNamn(namn), enhet(enhet), värde(värde), tidsstämpel(tid) {}
+// Konstruktor med specifik tidsstämpel  
+Measurement::Measurement(const std::string& name, const std::string& unit, 
+                       double value, const std::string& time)
+    : sensorName(name), unit(unit), value(value), timestamp(time) {}
 

@@ -6,17 +6,17 @@
  
  namespace Utils {
      // Genererar aktuell tidsstämpel
-     std::string nuvarandeTidsstämpel();
+    std::string currentTimestamp();
      
      // Formaterar double-värden
-     std::string formateraDouble(double värde, int decimaler = 2);
+    std::string formatDouble(double value, int decimals = 2);
      
      // Användarinput
-     int hämtaIntegerInput(const std::string& prompt);
-     double hämtaDoubleInput(const std::string& prompt);
+    int getIntegerInput(const std::string& prompt);
+    double getDoubleInput(const std::string& prompt);
      
      // Felhantering
-     bool valideraFilformat(const std::string& rad);
+    bool validateFileFormat(const std::string& line);
  }
  
  #endif

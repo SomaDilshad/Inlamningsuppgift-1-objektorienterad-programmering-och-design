@@ -7,155 +7,155 @@
  #include <cmath>
  #include <algorithm>
  
- // Lägger till en mätning i lagringen
- void MeasurementStorage::läggTillMätning(const Measurement& mätning) {
-     mätningar.push_back(mätning);  // Lägger till i vektorn
+// Lägger till en mätning i lagringen
+void MeasurementStorage::addMeasurement(const Measurement& measurement) {
+    measurements.push_back(measurement);  // Lägger till i vektorn
  }
  
- // Rensar alla mätningar
- void MeasurementStorage::rensaAllaMätningar() {
-     mätningar.clear();  // Tömmer vektorn
+// Rensar alla mätningar
+void MeasurementStorage::clearAllMeasurements() {
+    measurements.clear();  // Tömmer vektorn
  }
  
- // Visar alla sparade mätningar
- void MeasurementStorage::visaAllaMätningar() const {
-     if (mätningar.empty()) {  // Kolla om vektorn är tom
-         std::cout << "Inga mätningar att visa.\n";
+// Visar alla sparade mätningar
+void MeasurementStorage::showAllMeasurements() const {
+    if (measurements.empty()) {  // Kolla om vektorn är tom
+        std::cout << "No measurements to display.\n";
          return;
      }
      
-     std::cout << "\n=== ALLA MÄTNINGAR ===\n";
+    std::cout << "\n=== ALL MEASUREMENTS ===\n";
      // Range-based for loop - modern C++
-     for (const auto& mätning : mätningar) {
-         std::cout << mätning.tidsstämpel << " | " 
-                   << mätning.sensorNamn << " | " 
-                   << Utils::formateraDouble(mätning.värde) << " " 
-                   << mätning.enhet << "\n";
+    for (const auto& measurement : measurements) {
+        std::cout << measurement.timestamp << " | " 
+                  << measurement.sensorName << " | " 
+                  << Utils::formatDouble(measurement.value) << " " 
+                  << measurement.unit << "\n";
      }
  }
 
- // Visar statistik för alla sensorer
- void MeasurementStorage::visaStatistikPerSensor() const {
-     if (mätningar.empty()) {
-         std::cout << "Inga mätningar att analysera.\n";
+// Visar statistik för alla sensorer
+void MeasurementStorage::showStatisticsPerSensor() const {
+    if (measurements.empty()) {
+        std::cout << "No measurements to analyze.\n";
          return;
      }
      
      // Hämta unika sensornamn
-     std::vector<std::string> sensorNamn;
-     for (const auto& mätning : mätningar) {
+    std::vector<std::string> sensorNames;
+    for (const auto& measurement : measurements) {
          // Kolla om namnet redan finns
-         if (std::find(sensorNamn.begin(), sensorNamn.end(), mätning.sensorNamn) == sensorNamn.end()) {
-             sensorNamn.push_back(mätning.sensorNamn);  // Lägg till om det inte finns
+        if (std::find(sensorNames.begin(), sensorNames.end(), measurement.sensorName) == sensorNames.end()) {
+            sensorNames.push_back(measurement.sensorName);  // Lägg till om det inte finns
          }
      }
      
-     std::cout << "\n=== STATISTIK PER SENSOR ===\n";
-     for (const auto& namn : sensorNamn) {
-         visaStatistikFörSensor(namn);
+    std::cout << "\n=== STATISTICS PER SENSOR ===\n";
+    for (const auto& name : sensorNames) {
+        showStatisticsForSensor(name);
      }
  }
 
- // Hämtar alla mätningar för en specifik sensor
- std::vector<Measurement> MeasurementStorage::hämtaMätningarFörSensor(const std::string& sensorNamn) const {
-     std::vector<Measurement> resultat;
-     for (const auto& mätning : mätningar) {
-         if (mätning.sensorNamn == sensorNamn) {
-             resultat.push_back(mätning);  // Kopiera mätningen
+// Hämtar alla mätningar för en specifik sensor
+std::vector<Measurement> MeasurementStorage::getMeasurementsForSensor(const std::string& sensorName) const {
+    std::vector<Measurement> result;
+    for (const auto& measurement : measurements) {
+        if (measurement.sensorName == sensorName) {
+            result.push_back(measurement);  // Kopiera mätningen
          }
      }
-     return resultat;  // Returnera kopian
+    return result;  // Returnera kopian
  }
 
- // Beräknar medelvärde för en sensor
- double MeasurementStorage::beräknaMedelvärde(const std::string& sensorNamn) const {
-     auto sensorMätningar = hämtaMätningarFörSensor(sensorNamn);
-     if (sensorMätningar.empty()) return 0.0;
+// Beräknar medelvärde för en sensor
+double MeasurementStorage::calculateAverage(const std::string& sensorName) const {
+    auto sensorMeasurements = getMeasurementsForSensor(sensorName);
+    if (sensorMeasurements.empty()) return 0.0;
      
      double summa = 0.0;
-     for (const auto& mätning : sensorMätningar) {
-         summa += mätning.värde;  // Summera alla värden
+    for (const auto& measurement : sensorMeasurements) {
+        summa += measurement.value;  // Summera alla värden
      }
-     return summa / sensorMätningar.size();  // Dela med antal
+    return summa / sensorMeasurements.size();  // Dela med antal
  }
 
- // Beräknar standardavvikelse för en sensor
- double MeasurementStorage::beräknaStandardavvikelse(const std::string& sensorNamn) const {
-     auto sensorMätningar = hämtaMätningarFörSensor(sensorNamn);
-     if (sensorMätningar.size() < 2) return 0.0;  // Behöver minst 2 värden
+// Beräknar standardavvikelse för en sensor
+double MeasurementStorage::calculateStandardDeviation(const std::string& sensorName) const {
+    auto sensorMeasurements = getMeasurementsForSensor(sensorName);
+    if (sensorMeasurements.size() < 2) return 0.0;  // Behöver minst 2 värden
      
-     double medelvärde = beräknaMedelvärde(sensorNamn);
+    double medelvärde = calculateAverage(sensorName);
      double summa = 0.0;
      
      // Beräkna summan av kvadrerade avvikelser
-     for (const auto& mätning : sensorMätningar) {
-         double diff = mätning.värde - medelvärde;
+    for (const auto& measurement : sensorMeasurements) {
+        double diff = measurement.value - medelvärde;
          summa += diff * diff;  // Kvadrera avvikelsen
      }
      
      // Standardavvikelse = sqrt( summa / (n-1) )
-     return std::sqrt(summa / (sensorMätningar.size() - 1));
+    return std::sqrt(summa / (sensorMeasurements.size() - 1));
  }
 
- // Sparar alla mätningar till fil
- bool MeasurementStorage::sparaTillFil(const std::string& filnamn) const {
-     std::ofstream fil(filnamn);  // Öppna fil för skrivning
-     if (!fil.is_open()) {
-         std::cout << "Kunde inte öppna fil: " << filnamn << "\n";
+// Sparar alla mätningar till fil
+bool MeasurementStorage::saveToFile(const std::string& filename) const {
+    std::ofstream fil(filename);  // Öppna fil för skrivning
+    if (!fil.is_open()) {
+        std::cout << "Could not open file: " << filename << "\n";
          return false;
      }
      
      // Skriv varje mätning som CSV-rad
-     for (const auto& mätning : mätningar) {
-         fil << mätning.tidsstämpel << "," 
-             << mätning.sensorNamn << "," 
-             << mätning.värde << "," 
-             << mätning.enhet << "\n";
+    for (const auto& measurement : measurements) {
+        fil << measurement.timestamp << "," 
+            << measurement.sensorName << "," 
+            << measurement.value << "," 
+            << measurement.unit << "\n";
      }
      
      fil.close();  // Stäng filen
-     std::cout << "Sparade " << mätningar.size() << " mätningar till " << filnamn << "\n";
+    std::cout << "Saved " << measurements.size() << " measurements to " << filename << "\n";
      return true;
  }
 
- // Laddar mätningar från fil
- bool MeasurementStorage::laddaFrånFil(const std::string& filnamn) {
-     std::ifstream fil(filnamn);  // Öppna fil för läsning
-     if (!fil.is_open()) {
-         std::cout << "Kunde inte öppna fil: " << filnamn << "\n";
+// Laddar mätningar från fil
+bool MeasurementStorage::loadFromFile(const std::string& filename) {
+    std::ifstream fil(filename);  // Öppna fil för läsning
+    if (!fil.is_open()) {
+        std::cout << "Could not open file: " << filename << "\n";
          return false;
      }
      
      std::string rad;
-     int inlästa = 0;
+    int readCount = 0;
      
      while (std::getline(fil, rad)) {  // Läs en rad i taget
          if (rad.empty()) continue;    // Hoppa över tomma rader
          
-         if (Utils::valideraFilformat(rad)) {
+        if (Utils::validateFileFormat(rad)) {
              std::istringstream ss(rad);  // Skapa ström från rad
-             std::string tidsstämpel, sensorNamn, enhet, värdeStr;
-             double värde;
+            std::string timestamp, sensorName, unit, valueStr;
+            double value;
              
              // Dela upp raden vid kommatecken
-             std::getline(ss, tidsstämpel, ',');
-             std::getline(ss, sensorNamn, ',');
-             std::getline(ss, värdeStr, ',');
-             std::getline(ss, enhet, ',');
+            std::getline(ss, timestamp, ',');
+            std::getline(ss, sensorName, ',');
+            std::getline(ss, valueStr, ',');
+            std::getline(ss, unit, ',');
              
              try {
-                 värde = std::stod(värdeStr);  // Konvertera string till double
-                 Measurement mätning(sensorNamn, enhet, värde, tidsstämpel);
-                 mätningar.push_back(mätning);
-                 inlästa++;
+                value = std::stod(valueStr);  // Konvertera string till double
+                Measurement measurement(sensorName, unit, value, timestamp);
+                measurements.push_back(measurement);
+                readCount++;
              } catch (const std::exception& e) {
-                 std::cout << "Fel vid inläsning av rad: " << rad << "\n";
+                std::cout << "Error reading line: " << rad << "\n";
              }
          }
      }
      
      fil.close();
-     std::cout << "Laddade " << inlästa << " mätningar från " << filnamn << "\n";
-     return inlästa > 0;
+    std::cout << "Loaded " << readCount << " measurements from " << filename << "\n";
+    return readCount > 0;
  }
 
